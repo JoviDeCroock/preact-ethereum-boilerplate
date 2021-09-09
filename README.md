@@ -24,7 +24,9 @@ which we'll use in [metamask](https://metamask.io/) to connect to our local bloc
 our metamask extension and should see a dropdown in the top-right containing `localhost:8545` this is our locally deployed chain.
 Click the Avatar next to the dropdown and proceed to "import account", paste one of the private keys in there and 🎉 you're rich... on your own chain...
 
+## Packages
 
+- [`@ethersproject`](https://github.com/ethers-io/ethers.js)
 
 ## VSCode Extensions
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
-import { ethers } from 'ethers';
+import { Contract } from '@ethersproject/contracts';
+import { Web3Provider } from '@ethersproject/providers';
 import { tw } from 'twind';
 
 import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json';
@@ -17,8 +18,8 @@ function Greeting() {
 
   async function fetchGreeting() {
     if (typeof window.ethereum !== 'undefined') {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(greeterAddress, Greeter.abi, provider);
+      const provider = new Web3Provider(window.ethereum);
+      const contract = new Contract(greeterAddress, Greeter.abi, provider);
       try {
         const data = await contract.greet();
         setGreeting(data);
@@ -40,9 +41,9 @@ function Greeting() {
     if (typeof window.ethereum !== 'undefined') {
       setLoading(true);
       await requestAccount();
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const contract = new ethers.Contract(greeterAddress, Greeter.abi, signer);
+      const contract = new Contract(greeterAddress, Greeter.abi, signer);
       const transaction = await contract.setGreeting(greeting);
       await transaction.wait();
       fetchGreeting().then(function() {

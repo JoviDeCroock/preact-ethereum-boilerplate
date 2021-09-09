@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'preact/hooks';
 import { Web3Provider } from '@ethersproject/providers';
+import { Contract } from '@ethersproject/contracts';
+
+import Token from './artifacts/contracts/PreactToken.sol/PreactToken.json';
 import { formatEther } from '@ethersproject/units';
 
-import { requestAccount } from './utils/account';
+// You get this from "yarn deploy:contracts" it should say "PreactToken deployed to: someAddress"
+const tokenAddress = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
 
 function Balance() {
-  const [balance, setBalance] = useState('0');
+  const [supply, setSupply] = useState('0');
 
+  async function getTotalSupply() {
+    if (typeof window.ethereum !== 'undefined') {
+      const provider = new Web3Provider(window.ethereum);
+      const contract = new Contract(tokenAddress, Token.abi, provider)
+      const totalSupply = await contract.totalSupply();
+      setSupply(formatEther(totalSupply));
+    }
+  }
 
   useEffect(function() {
-    requestAccount().then(function() {
-      const provider = new Web3Provider(window.ethereum);
-      provider.listAccounts().then(function(accounts) {
-        provider.getBalance(accounts[0]).then(function(balance) {
-          setBalance(formatEther(balance));
-        });
-      });
-    });
+    getTotalSupply();
   }, []);
 
-  return <p>Balance: {balance} ETH</p>;
+  return <p>Total Supply: {supply} PT</p>;
 }
 
 export default Balance;

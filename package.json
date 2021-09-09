@@ -1,0 +1,25 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0",
+  "scripts": {
+    "compile:contracts": "hardhat compile",
+    "deploy:contracts": "hardhat run scripts/deploy.js --network localhost",
+    "dev": "concurrently \"vite\" \"hardhat node\"",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "ethers": "^5.4.6",
+    "preact": "^10.5.13"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@preact/preset-vite": "^2.0.0",
+    "concurrently": "^6.2.1",
+    "ethereum-waffle": "^3.4.0",
+    "hardhat": "^2.6.3",
+    "typescript": "^4.3.2",
+    "vite": "^2.5.4"
+  }
+}

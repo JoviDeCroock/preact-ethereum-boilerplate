@@ -1,4 +1,6 @@
 import { render } from 'preact';
-import App from './App';
+import Greeting from './Greeting';
 
-render(h(App, {}), document.getElementById('app'));
+const appElement = document.getElementById('app');
+
+if (appElement) render(<Greeting />, appElement);

@@ -1,6 +1,6 @@
 import { render } from 'preact';
-import Greeting from './Greeting';
+import App from './App';
 
 const appElement = document.getElementById('app');
 
-if (appElement) render(<Greeting />, appElement);
+if (appElement) render(<App />, appElement);

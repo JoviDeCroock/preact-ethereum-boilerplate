@@ -4,13 +4,10 @@ import { Web3Provider } from '@ethersproject/providers';
 import { tw } from 'twind';
 
 import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json';
+import { requestAccount } from './utils/account';
 
 // You get this from "yarn deploy:contracts" it should say "x deployed to: someAddress"
 const greeterAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-
-async function requestAccount() {
-  await window.ethereum.request({ method: 'eth_requestAccounts' });
-}
 
 function Greeting() {
   const [loading, setLoading] = useState(true);

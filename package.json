@@ -11,6 +11,7 @@
   "dependencies": {
     "@ethersproject/contracts": "^5.4.1",
     "@ethersproject/providers": "^5.4.5",
+    "@ethersproject/units": "^5.4.0",
     "preact": "^10.5.13",
     "twind": "^0.16.16"
   },
